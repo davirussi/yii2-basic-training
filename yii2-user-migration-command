@@ -1,0 +1,7 @@
+// git
+https://github.com/dektrium/yii2-user
+//composer command
+composer require "dektrium/yii2-user:0.9.*@dev"
+
+//comannd for migration
+php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
