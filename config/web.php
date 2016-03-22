@@ -1,5 +1,7 @@
 <?php
 
+$config = parse_ini_file('/var/phpsecure/phpconfidential.ini', true);
+
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -41,9 +43,9 @@ $config = [
             'useFileTransport' => false, //setar como false para configurar transport 
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com', //configure email para permitir os envios de apps de terceiros
-                'username' => 'meu_email@gmail.com',
-                'password' => 'minha_senha',
+                'host' => $config['smtp_host'], //configure email para permitir os envios de apps de terceiros
+                'username' => $config['smtp_username'],
+                'password' => $config['smtp_password'],
                 'port' => '587',
                 'encryption' => 'tls',
             ],
@@ -57,7 +59,6 @@ $config = [
                 ],
             ],
         ],
-        //para adicionar login pelo twitter   
         'authClientCollection' => [
             'class'   => \yii\authclient\Collection::className(),
             'clients' => [
@@ -65,13 +66,11 @@ $config = [
             // you can read more in the "Available clients" section
             'twitter' => [
                 'class'        => 'dektrium\user\clients\Twitter',
-                'consumerKey'     => 'CONSUMER_KEY',
-                'consumerSecret' => 'CONSUMER_SECRET',
+                'consumerKey'     => $config['oauth_twitter_consumer_key'],
+                'consumerSecret' => $config['oauth_twitter_consumer_secret'],
                 ],
             ],
         ],
-        
-        //para extender o login original e usar o login customizado permitindo sign_up e login por redes sociais
         'view' => [
             'theme' => [
                 'pathMap' => [

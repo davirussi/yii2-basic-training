@@ -20,4 +20,11 @@ clicar na foto -> minha conta
 connected apps & sites
 Allow less secure apps: ON
 
+//secret file configuration format
+oauth_twitter_consumer_key ="KEY"
+oauth_twitter_consumer_secret="KEY"
+smtp_host = "smtp.server.com"
+smtp_username = "login"
+smtp_password = "password"
+
 
