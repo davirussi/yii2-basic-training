@@ -57,6 +57,19 @@ $config = [
                 ],
             ],
         ],
+        //para adicionar login pelo twitter   
+        'authClientCollection' => [
+            'class'   => \yii\authclient\Collection::className(),
+            'clients' => [
+            // here is the list of clients you want to use
+            // you can read more in the "Available clients" section
+            'twitter' => [
+                'class'        => 'dektrium\user\clients\Twitter',
+                'consumerKey'     => 'CONSUMER_KEY',
+                'consumerSecret' => 'CONSUMER_SECRET',
+                ],
+            ],
+        ],
         'db' => require(__DIR__ . '/db.php'),
         /*
         'urlManager' => [
