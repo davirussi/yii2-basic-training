@@ -1,0 +1,23 @@
+// git
+https://github.com/dektrium/yii2-user
+//composer command
+composer require "dektrium/yii2-user:0.9.*@dev"
+
+//comannd for migration
+php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
+
+//tutorial util para criar a autenticação por twitter
+http://code.tutsplus.com/tutorials/how-to-program-with-yii2-authclient-integration-with-twitter-google-and-other-networks--cms-23489
+https://github.com/dektrium/yii2-user/blob/master/docs/social-auth.md
+
+//resolvendo o problema de não ter link oficial apra o host na hora de registrar o app no twitter
+vim /etc/hosts
+127.0.1.1    local.foo.com
+
+//changing gmail security
+acessar a conta 
+clicar na foto -> minha conta
+connected apps & sites
+Allow less secure apps: ON
+
+
