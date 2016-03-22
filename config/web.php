@@ -70,6 +70,15 @@ $config = [
                 ],
             ],
         ],
+        
+        //para extender o login original e usar o login customizado permitindo sign_up e login por redes sociais
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                     '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
         'db' => require(__DIR__ . '/db.php'),
         /*
         'urlManager' => [
