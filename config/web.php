@@ -14,7 +14,7 @@ $config = [
             'enableUnconfirmedLogin' => true,
             'confirmWithin' => 21600,
             'cost' => 12,
-            'admins' => ['admin'],
+            'admins' => [$config['admin_username'],],
             'mailer' => [
                 'sender'                => 'no-reply@myhost.com', // or ['no-reply@myhost.com' => 'Sender name']
                 'welcomeSubject'        => 'Welcome subject',
