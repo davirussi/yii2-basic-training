@@ -23,6 +23,26 @@ $config = [
                 'recoverySubject'       => 'Recovery subject',
             ],
          ],
+         //adding admin module for rbac admin control
+         'admin' => [
+             'class' => 'mdm\admin\Module',
+             'controllerMap' => [
+                 'assignment' => [
+                     'class' => 'mdm\admin\controllers\AssignmentController',
+                     'userClassName' => 'dektrium\user\models\User',//path to the class user, here i'm using a custom user class
+                     'idField' => 'id'
+                  ],
+             ],
+             'menus' => [
+                 'assignment' => [
+                     'label' => 'Grand Access' // change label
+                 ],
+//             'route' => null, // disable menu route 
+             ],
+
+           ],
+
+     
     ],
     'components' => [
         'request' => [
