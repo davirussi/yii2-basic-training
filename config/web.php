@@ -102,14 +102,15 @@ $config = [
         'authManager' => [
             'class'=>'yii\rbac\DbManager',
         ],
-        /*
+       
+        //permitir urls elegantes 
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+          //  'showScriptName' => false,
+          //  'rules' => [
+          //  ],
         ],
-        */
+       
     ],
     'params' => $params,
 ];
