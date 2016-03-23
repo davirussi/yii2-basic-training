@@ -1,0 +1,16 @@
+//follow this tutorial
+https://www.youtube.com/watch?v=vLb8YATO-HU
+https://github.com/yiisoft/yii2/blob/master/docs/guide/security-authorization.md
+https://github.com/lukos/yii2-tutorial
+
+
+//comannd for migration
+//copiei o arquivo de migração do diretório var/www/html/basic/vendor/yiisoft/yii2/rbac para ./basic/migrations/
+//trocando up por safeUp e down por safeDown para que migations só ocorra por completo ou não ocorra
+php yii migrate/up 
+
+utilizar yii2-admin para fazer interface com o rbac é bem interessante utilizar a versão 2 a versão 3 foi descuntinuada
+https://github.com/mdmsoft/yii2-admin/
+composer require mdmsoft/yii2-admin "~2.0"
+
+
