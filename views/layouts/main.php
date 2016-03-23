@@ -33,9 +33,8 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
+
+    $items = [
             ['label' => 'Home', 'url' => ['/site/index']], 
             ['label' => 'Country DB', 'url' => ['/country/index']],
             ['label' => 'About', 'url' => ['/site/about']],
@@ -48,7 +47,14 @@ AppAsset::register($this);
                     'url' => ['/user/security/logout'],
                     'linkOptions' => ['data-method' => 'post']],
                 ['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest] 
-        ],
+    ];
+
+    if ( Yii::$app->user->can('permission_admin') )
+        $items[] = ['label' => 'Permissions', 'url' => ['/admin']];
+
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => $items,
     ]);
     NavBar::end();
     ?>
