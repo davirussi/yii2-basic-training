@@ -112,6 +112,19 @@ $config = [
         ],
        
     ],
+
+    //permitir páginas e subpáginas pelos rbac
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            //'*', //permitir tudo
+            'user/security/login',
+            'user/security/logout',
+            'site/*',
+            'country/', 
+            ],
+        ],
+
     'params' => $params,
 ];
 
