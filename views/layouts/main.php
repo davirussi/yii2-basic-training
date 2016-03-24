@@ -52,6 +52,9 @@ AppAsset::register($this);
     if ( Yii::$app->user->can('permission_admin') )
         $items[] = ['label' => 'Permissions', 'url' => ['/admin']];
 
+    if ( !Yii::$app->user->isGuest )
+        $items[] = ['label' => 'Post', 'url' => ['/post/index']];
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,
