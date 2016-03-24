@@ -34,6 +34,7 @@ class Post extends \yii\db\ActiveRecord
             [['userId'], 'required'],
             [['userId'], 'integer'],
             [['titulo'], 'string', 'max' => 45],
+            //alterando essa linha pode-se validar usando um outro modelo não padrão
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => '\dektrium\user\models\User', 'targetAttribute' => ['userId' => 'id']],
         ];
     }
