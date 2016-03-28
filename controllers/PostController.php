@@ -8,6 +8,8 @@ use app\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use dektrium\user\models\User;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -90,7 +92,9 @@ class PostController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'userId' => $model->userId]);
         } else {
+            $lista_users = ArrayHelper::map(User::find()->all(), 'id', 'username');
             return $this->render('update', [
+                'lista_users' => $lista_users,
                 'model' => $model,
             ]);
         }
