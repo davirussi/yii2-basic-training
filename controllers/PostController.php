@@ -65,6 +65,7 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
+        $model->userId = Yii::$app->user->identity->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'userId' => $model->userId]);
