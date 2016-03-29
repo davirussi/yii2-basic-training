@@ -85,6 +85,17 @@ class PostController extends Controller
      * @param integer $userId
      * @return mixed
      */
+
+    public function getUserList(){
+         //o problema dessa abordagem que find_all() vai retornar toda a tabela e todas 
+         //as linhas e vai carregar na memória
+         $output = ArrayHelper::map(User::find()->all(), 'id', 'username');
+         
+         //aqui só será retornado os atributos username, email e id de todos os registros
+         $output = ArrayHelper::map(User::find()->select(['username','email','id'])->all(), 'id', 'username');     
+         return $output;
+    }
+
     public function actionUpdate($id, $userId)
     {
         $model = $this->findModel($id, $userId);
@@ -92,7 +103,7 @@ class PostController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'userId' => $model->userId]);
         } else {
-            $lista_users = ArrayHelper::map(User::find()->all(), 'id', 'username');
+            $lista_users = $this->getUserList();
             return $this->render('update', [
                 'lista_users' => $lista_users,
                 'model' => $model,
