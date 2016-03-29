@@ -27,7 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'titulo',
             'conteudo:ntext',
-            'userId',
+            [
+                'attribute' => 'userId',
+                'header' => 'Usuário',
+                'value'=> 'user.UserName' //valor vem direto do models/User
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
