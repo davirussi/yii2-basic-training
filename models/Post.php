@@ -35,7 +35,7 @@ class Post extends \yii\db\ActiveRecord
             [['userId'], 'integer'],
             [['titulo'], 'string', 'max' => 45],
             //alterando essa linha pode-se validar usando um outro modelo não padrão
-            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => '\dektrium\user\models\User', 'targetAttribute' => ['userId' => 'id']],
+            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => '\dektrium\user\models\User', 'targetAttribute' => ['userId' => 'id'], 'message' => Yii::t('app','This user doen\'t exist')],
         ];
     }
 
