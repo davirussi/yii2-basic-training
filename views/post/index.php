@@ -33,7 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=> 'user.Name' //valor vem direto do models/User
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete} '
+            ],
         ],
     ]); ?>
 </div>
