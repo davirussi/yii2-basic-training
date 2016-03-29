@@ -31,7 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'titulo',
             'conteudo:ntext',
-            'userId',
+            [// userId -> nome
+                'label' => 'Usuário',
+                'value' => $model->user->getName(),
+            ],
         ],
     ]) ?>
 
