@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'conteudo')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'userId')->dropDownList($lista_users) ?>
+    <?= $form->field($model, 'userId')->dropDownList($lista_users)->label('Usuário') ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
