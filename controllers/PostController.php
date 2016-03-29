@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use dektrium\user\models\User;
+use app\models\User;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -93,6 +93,9 @@ class PostController extends Controller
          
          //aqui só será retornado os atributos username, email e id de todos os registros
          $output = ArrayHelper::map(User::find()->select(['username','email','id'])->all(), 'id', 'username');     
+        
+         //aqui será retornado só os atributos username email e id, porém ele irá mostrar a informação utilizando a função getUserNameEmail (Yii procura pela função get + UserNameEmail)
+         $output = ArrayHelper::map(User::find()->select(['username','email','id'])->all(), 'id', 'UserNameEmail');     
          return $output;
     }
 
