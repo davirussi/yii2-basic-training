@@ -56,6 +56,9 @@ class PostSearch extends Post
             // $query->where('0=1');
             return $dataProvider;
         }
+        
+        //aqui o joinWith vai buscar a função getUser da classe Post e vai realizar o JOIN
+        $query->joinWith('user');
 
         // grid filtering conditions
         $query->andFilterWhere([
