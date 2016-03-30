@@ -18,8 +18,8 @@ class PostSearch extends Post
     public function rules()
     {
         return [
-            [['id', 'userId'], 'integer'],
-            [['titulo', 'conteudo'], 'safe'],
+            [['id'], 'integer'],
+            [['titulo', 'conteudo', 'userId'], 'safe'],
         ];
     }
 
