@@ -51,6 +51,17 @@ class PostSearch extends Post
             'query' => $query,
         ]);
 
+        //adiciona capacidades de order ao campo do grid
+        $dataProvider->sort->attributes['username'] = [
+            'asc'  => ['user.username' => SORT_ASC],
+            'desc' => ['user.username' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['fullname'] = [
+            'asc'  => ['profile.name' => SORT_ASC],
+            'desc' => ['profile.name' => SORT_DESC],
+        ];
+
+
         $this->load($params);
 
         if (!$this->validate()) {
