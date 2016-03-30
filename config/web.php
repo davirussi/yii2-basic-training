@@ -103,7 +103,8 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         'authManager' => [
-            'class'=>'yii\rbac\DbManager',
+            'class'=>'app\rbac\MyDbManager',
+//            'ruleFile' => '@app/rbac/AuthorRule.php',
         ],
        
         //permitir urls elegantes 
