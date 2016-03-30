@@ -32,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'header' => 'Username',
                 'value'=> 'user.userName' //valor vem direto do models/User
             ],
-
+            [
+                'attribute' => 'name',
+                'header' => 'Full Name',
+                'value'=> 'user.FullName' //valor vem direto do models/User
+            ], 
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete} '

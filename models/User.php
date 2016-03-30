@@ -8,7 +8,7 @@ use dektrium\user\models\User as BaseUser;
 class User extends BaseUser
 {
 
-    public function getName(){
+    public function getFullName(){
     $profile = $this->getProfile()->one();
     if (!($profile['name'] == ''))
        return $profile['name'];

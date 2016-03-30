@@ -15,11 +15,13 @@ class PostSearch extends Post
     /**
      * @inheritdoc
      */
+    public $name;
     public function rules()
     {
+        
         return [
             [['id'], 'integer'],
-            [['titulo', 'conteudo', 'userId'], 'safe'],
+            [['titulo', 'conteudo', 'userId', 'name'], 'safe'],
         ];
     }
 
@@ -59,15 +61,21 @@ class PostSearch extends Post
         
         //aqui o joinWith vai buscar a função getUser da classe Post e vai realizar o JOIN
         $query->joinWith('user');
+        $query->joinWith('user.profile');
 
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
-
         $query->andFilterWhere(['like', 'titulo', $this->titulo])
             ->andFilterWhere(['like', 'conteudo', $this->conteudo])
-            ->andFilterWhere(['like', 'user.username', $this->userId]);
+            ->andFilterWhere(['like', 'user.username', $this->userId])
+            ->andFilterWhere(['like', 'profile.name', $this->name]);
+/*       echo('<pre>');
+       print_r($query->select('*')->asArray()->one());
+       echo('</pre>');
+       die();
+*/
 
         return $dataProvider;
     }
