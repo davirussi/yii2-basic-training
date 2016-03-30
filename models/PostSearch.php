@@ -63,7 +63,6 @@ class PostSearch extends Post
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'userId' => $this->userId,
         ]);
 
         $query->andFilterWhere(['like', 'titulo', $this->titulo])
