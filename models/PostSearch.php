@@ -15,13 +15,13 @@ class PostSearch extends Post
     /**
      * @inheritdoc
      */
-    public $name;
+    public $fullname;
     public function rules()
     {
         
         return [
             [['id'], 'integer'],
-            [['titulo', 'conteudo', 'userId', 'name'], 'safe'],
+            [['titulo', 'conteudo', 'userId', 'fullname'], 'safe'],
         ];
     }
 
@@ -70,7 +70,7 @@ class PostSearch extends Post
         $query->andFilterWhere(['like', 'titulo', $this->titulo])
             ->andFilterWhere(['like', 'conteudo', $this->conteudo])
             ->andFilterWhere(['like', 'user.username', $this->userId])
-            ->andFilterWhere(['like', 'profile.name', $this->name]);
+            ->andFilterWhere(['like', 'profile.name', $this->fullname]);
 /*       echo('<pre>');
        print_r($query->select('*')->asArray()->one());
        echo('</pre>');

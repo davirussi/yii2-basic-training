@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=> 'user.userName' //valor vem direto do models/User
             ],
             [
-                'attribute' => 'name',
+                'attribute' => 'fullname',
                 'header' => 'Full Name',
                 'value'=> 'user.FullName' //valor vem direto do models/User
             ], 
