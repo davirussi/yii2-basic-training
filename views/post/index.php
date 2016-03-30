@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'conteudo:ntext',
             [
                 'attribute' => 'userId',
-                'header' => 'Usuário',
-                'value'=> 'user.Name' //valor vem direto do models/User
+                'header' => 'Username',
+                'value'=> 'user.userName' //valor vem direto do models/User
             ],
 
             [
