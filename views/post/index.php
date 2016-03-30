@@ -28,13 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'titulo',
             'conteudo:ntext',
             [
+                'enableSorting' => TRUE,
                 'attribute' => 'userId',
-                'header' => 'Username',
+                'label' => 'Username',
                 'value'=> 'user.userName' //valor vem direto do models/User
             ],
             [
+                'enableSorting' => TRUE,
                 'attribute' => 'fullname',
-                'header' => 'Full Name',
+                'label' => 'Full Name',
                 'value'=> 'user.FullName' //valor vem direto do models/User
             ], 
             [
