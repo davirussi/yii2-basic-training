@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'conteudo:ntext',
             [// userId -> nome
                 'label' => 'Usuário',
-                'value' => $model->user->getName(),
+                'value' => $model->user->getUserName(),
             ],
         ],
     ]) ?>
