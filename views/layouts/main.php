@@ -49,6 +49,9 @@ AppAsset::register($this);
                 ['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest] 
     ];
 
+    if ( !(Yii::$app->user->isGuest) )
+        $items[] = ['label' => 'Tags', 'url' => ['/tag/index']];
+
     if ( Yii::$app->user->can('permission_admin') )
         $items[] = ['label' => 'Permissions', 'url' => ['/admin']];
 
