@@ -50,7 +50,7 @@ AppAsset::register($this);
     ];
 
     if ( !(Yii::$app->user->isGuest) )
-        $items[] = ['label' => 'Tags', 'url' => ['/tag/index']];
+        $items[] = ['label' => 'Tags', 'url' => ['/dtag/index']];
 
     if ( Yii::$app->user->can('permission_admin') )
         $items[] = ['label' => 'Permissions', 'url' => ['/admin']];
