@@ -43,7 +43,7 @@ class Tag extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nome' => 'Nome',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
         ];
     }
 
