@@ -40,6 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=> 'user.FullName' //valor vem direto do models/User
             ], 
             [
+                'enableSorting' => TRUE,
+                'attribute' => 'tags',
+                'label' => 'Tag',
+                'value'=> 'alldtagspost' //valor vem direto do models/Post
+            ], 
+             
+            [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete} '
             ],

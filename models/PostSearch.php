@@ -16,12 +16,13 @@ class PostSearch extends Post
      * @inheritdoc
      */
     public $fullname;
+    public $tags;
     public function rules()
     {
         
         return [
             [['id'], 'integer'],
-            [['titulo', 'conteudo', 'userId', 'fullname'], 'safe'],
+            [['titulo', 'conteudo', 'userId', 'fullname', 'tags'], 'safe'],
         ];
     }
 

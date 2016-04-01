@@ -13,6 +13,7 @@ use Yii;
  * @property integer $userId
  *
  * @property User $user
+ * @property DpostDtag $dpostdtag
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -58,5 +59,31 @@ class Post extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'userId']);
+    }
+
+    public function getDTags(){
+         return $this->hasMany(DpostDtag::className(), ['post_id' => 'id']);
+    }
+
+    public function getAllDTagsPost(){
+        $postTags = $this->getDTags()->all();
+        $idstag = [];
+        
+        foreach ($postTags as $dpdt){
+            $idstag[] = $dpdt['tag_id'];
+        }
+
+        $tag = Dtag::findAll($idstag);
+        //select 'nome' from dtag where id IN $idstag
+        $tag = Dtag::find()
+                     ->asArray()
+                     ->select('nome')
+                     ->where(['id' => $idstag])
+                     ->all();
+        $output = [];
+        foreach($tag as $data)
+            $output[] = $data['nome'];
+
+        return join(" ",$output);
     }
 }
