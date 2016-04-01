@@ -124,6 +124,19 @@ class PostController extends Controller
      * @param integer $userId
      * @return mixed
      */
+    public function getAllDTag(){
+         //o problema dessa abordagem que find_all() vai retornar toda a tabela e todas 
+         //as linhas e vai carregar na memória
+         //$output = ArrayHelper::map(User::find()->all(), 'id', 'username');
+         
+         //aqui só será retornado os atributos username, email e id de todos os registros
+        // $output = ArrayHelper::map(User::find()->select(['username','email','id'])->all(), 'id', 'username');     
+        
+         //aqui será retornado só os atributos username email e id, porém ele irá mostrar a informação utilizando a função getUserNameEmail (Yii procura pela função get + UserNameEmail)
+         $output = ArrayHelper::map(Dtag::find()->select(['nome','id'])->all(), 'id', 'nome');     
+         return $output;
+    }
+
 
     public function getUserList(){
          //o problema dessa abordagem que find_all() vai retornar toda a tabela e todas 
