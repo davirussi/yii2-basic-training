@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use app\models\User;
+use app\models\DpostDtag;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -67,17 +68,44 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
+        $tagmodel = new DpostDtag();
+        //pegar o id do usuário que estiver fazendo o post
         $model->userId = Yii::$app->user->identity->id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'userId' => $model->userId]);
-        } else {
+        //teste para verificar se é um POST, e se consegue salvar os dois modelos utilizando transação afim de garantir a integridade, é ncessario validar os dois modelos separadamente pois um modelo depende do outro. 
+        if ($model->load(Yii::$app->request->post()) && $tagmodel->load(Yii::$app->request->post())) {
+            //transação para garantir integridade dos dois modelos
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                if ($model->validate()) {
+                    $model->save();
+                    //pegar o id do post e já utilizar no modelo do DpostDtag
+                    $tagmodel['post_id'] = $model->id;
+                    if ($tagmodel->validate()){
+                        $tagmodel->save();
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $model->id, 'userId' => $model->userId]);
+                    }
+                    else{
+                        $transaction->rollback();
+                    }
+                }
+                else {
+                    $transaction->rollback();
+                }
+            } 
+            catch (Exception $e){
+                $transaction->rollback();
+            }
+        }
+        else {
             return $this->render('create', [
-                'model' => $model,
+               'model' => $model,
+               'tagmodel' => $tagmodel,
             ]);
         }
     }
-
+ 
     /**
      * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.

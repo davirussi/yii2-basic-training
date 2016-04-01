@@ -13,6 +13,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'conteudo')->textarea(['rows' => 6]) ?>
+    
+    <?= $form->field($tagmodel, 'tag_id')->textInput() ?>
+
 
 
     <div class="form-group">
