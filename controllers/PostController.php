@@ -110,9 +110,11 @@ class PostController extends Controller
             }
         }
         else {
+            $tags = $this->getAllDTag();
             return $this->render('create', [
                'model' => $model,
                'tagmodel' => $tagmodel,
+               'tags' => $tags,
             ]);
         }
     }
