@@ -1,5 +1,6 @@
 <?php
 
+use kartik\widgets\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
@@ -14,11 +15,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'conteudo')->textarea(['rows' => 6]) ?>
     
-    <?= $form->field($tagmodel, 'tag_id')->textInput() ?>
-
-
-
-    <div class="form-group">
+    
+<?= $form->field($tagmodel, 'tag_id')->widget(Select2::classname(), [
+    'data' => $tags,
+    'options' => [
+        'placeholder' => 'Select Dtags  ...',
+        'multiple' => true
+    ],
+    'pluginOptions' => [
+        'allowClear' => true
+    ],
+]);
+?>
+   <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
