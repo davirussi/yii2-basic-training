@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use app\models\User;
 use app\models\DpostDtag;
+use app\models\Dtag;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -79,16 +80,26 @@ class PostController extends Controller
             try {
                 if ($model->validate()) {
                     $model->save();
-                    //pegar o id do post e já utilizar no modelo do DpostDtag
-                    $tagmodel['post_id'] = $model->id;
-                    if ($tagmodel->validate()){
-                        $tagmodel->save();
-                        $transaction->commit();
-                        return $this->redirect(['view', 'id' => $model->id, 'userId' => $model->userId]);
+                    //verifica se tem alguma tag para ser adicionada
+                    if (!(Yii::$app->request->post()['DpostDtag']['tag_id'] == NULL)){
+                        foreach(Yii::$app->request->post()['DpostDtag']['tag_id'] as $tag){
+                            //criar objeto DpostDtag para configura
+                            $postTagModel = new DpostDtag();
+                            //pegar o id do post e já utilizar no modelo do DpostDtag
+                            $postTagModel['post_id'] = $model->id;
+                            $postTagModel['tag_id'] = $tag; 
+
+                            if ($postTagModel->validate()){
+                                echo($tag);
+                                $postTagModel->save();
+                            }
+                            else{
+                                $transaction->rollback();
+                            }
+                        }
                     }
-                    else{
-                        $transaction->rollback();
-                    }
+                    $transaction->commit();
+                    return $this->redirect(['view', 'id' => $model->id, 'userId' => $model->userId]);
                 }
                 else {
                     $transaction->rollback();
