@@ -29,7 +29,8 @@ class DpostDtag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_id', 'tag_id'], 'required'],
+            [['post_id',], 'required'],
+            [['tag_id',], 'safe'],
             [['post_id', 'tag_id'], 'integer'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Dtag::className(), 'targetAttribute' => ['tag_id' => 'id']],
